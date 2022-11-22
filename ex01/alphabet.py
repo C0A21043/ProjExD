@@ -53,6 +53,7 @@ def kaitou(abs_chars):
 if __name__ == "__main__":
     st = time.time()
     alphabet = [chr(i + 65) for i in range(num_of_alphabet)]
+    #数値で指定したコードに該当する文字を返し変数に代入
     print(alphabet)
     for _ in range(num_of_trials):
         abs_chars = shutudai(alphabet)
