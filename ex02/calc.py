@@ -1,6 +1,5 @@
 import tkinter as tk
 #練習3
-import tkinter.messagebox as tkm
 import math
 #練習３
 def button_click(event):
