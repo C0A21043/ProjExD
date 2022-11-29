@@ -6,6 +6,8 @@ def button_click(event):
     btn=event.widget
     txt=btn["text"]
     tkm.showinfo(txt,f"[{txt}]ボタンがクリックされました")
+    entry.insert(tk.END,txt)
+
     
     
     
