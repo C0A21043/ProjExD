@@ -5,8 +5,17 @@ import tkinter.messagebox as tkm
 def button_click(event):
     btn=event.widget
     txt=btn["text"]
-    tkm.showinfo(txt,f"[{txt}]ボタンがクリックされました")
-    entry.insert(tk.END,txt)
+#練習７
+    if txt == "=":
+        sushiki=entry.get()
+        result=eval(sushiki)
+        entry.delete(0,tk.END)
+        entry.insert(tk.END,result)
+    else:
+#練習６
+        entry.insert(tk.END,txt)
+
+        
 
     
     
