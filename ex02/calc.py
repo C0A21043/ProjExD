@@ -1,7 +1,6 @@
 import tkinter as tk
 #練習3
 import tkinter.messagebox as tkm
-root=tk.Tk()
 #練習３
 def button_click(event):
     btn=event.widget
@@ -11,9 +10,10 @@ def button_click(event):
     
     
 #練習1
+root=tk.Tk()
 root.geometry("300x500")
 #練習2
-r,c=0,0
+r,c=1,0
 for num in range(9,-1,-1):
     button=tk.Button(root,text=f"{num}",width=4,height=2,font=("",30))
 #練習3
@@ -23,4 +23,8 @@ for num in range(9,-1,-1):
     if c%3==0:
         r+=1
         c=0
+        
+#練習４
+entry=tk.Entry(justify="right",width=10,font=("",40))
+entry.grid(row=0,column=0,columnspan=3)
 root.mainloop()
