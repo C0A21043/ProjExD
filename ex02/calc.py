@@ -22,19 +22,10 @@ def button_click(event):
         entry.insert(tk.END,"**2")
     elif txt=="e^x":
         e=2.718
-        entry.insert(tk.END,"**2.718")
-    
-    
-        
+        entry.insert(tk.END,"**2.718")   
     else:
 #練習６
         entry.insert(tk.END,txt)
-
-        
-
-    
-    
-    
 #練習1
 root=tk.Tk()
 root.geometry("400x600")
