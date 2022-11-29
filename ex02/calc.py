@@ -1,6 +1,7 @@
 import tkinter as tk
 #練習3
 import tkinter.messagebox as tkm
+import math
 #練習３
 def button_click(event):
     btn=event.widget
@@ -13,7 +14,17 @@ def button_click(event):
         entry.insert(tk.END,result)
     elif txt =="c":
         entry.delete(0,tk.END)
-    elif t
+    elif txt=="x":
+        entry.insert(tk.END,"*")
+    elif txt=="÷":
+        entry.insert(tk.END,"/")
+    elif txt=="x²":
+        entry.insert(tk.END,"**2")
+    elif txt=="e^x":
+        e=2.718
+        entry.insert(tk.END,"**2.718")
+    
+        
     else:
 #練習６
         entry.insert(tk.END,txt)
@@ -34,7 +45,7 @@ for num in range(9,-1,-1):
     button.bind("<1>",button_click)    
     button.grid(row=r,column=c)
     c+=1
-    if c%3==0:
+    if c%4==0:
         r+=1
         c=0
         
@@ -43,7 +54,7 @@ entry=tk.Entry(justify="right",width=10,font=("",40))
 entry.grid(row=0,column=0,columnspan=3)
 
 #練習５
-kigou=["+","=","-","x","÷","e","c",]
+kigou=["+","=","-","x","÷","e^x","c","x²"]
 for kg in kigou:
     button=tk.Button(root,text=f"{kg}",width=4,height=2,font=("",30))
     button.grid(row=r,column=c)
