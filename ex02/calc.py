@@ -20,7 +20,11 @@ def button_click(event):
     elif txt=="x²":
         entry.insert(tk.END,"**2")
     elif txt=="e^x":
-        e=2.718
+        shiki=entry.get()
+        entry.delete(0,tk.END)
+        res=eval(shiki)
+        rs=math.exp(res)
+        entry.insert(tk.END,rs)
         entry.insert(tk.END,"**2.718")   
     else:
 #練習６
