@@ -25,7 +25,6 @@ def button_click(event):
         res=eval(shiki)
         rs=math.exp(res)
         entry.insert(tk.END,rs)
-        entry.insert(tk.END,"**2.718")   
     else:
 #練習６
         entry.insert(tk.END,txt)
