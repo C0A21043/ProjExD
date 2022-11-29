@@ -24,6 +24,7 @@ def button_click(event):
         e=2.718
         entry.insert(tk.END,"**2.718")
     
+    
         
     else:
 #練習６
@@ -54,7 +55,7 @@ entry=tk.Entry(justify="right",width=10,font=("",40))
 entry.grid(row=0,column=0,columnspan=3)
 
 #練習５
-kigou=["+","=","-","x","÷","e^x","c","x²"]
+kigou=["+","=","-","x","÷","e^x","c","x²","√"]
 for kg in kigou:
     button=tk.Button(root,text=f"{kg}",width=4,height=2,font=("",30))
     button.grid(row=r,column=c)
