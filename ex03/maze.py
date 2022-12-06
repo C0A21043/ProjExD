@@ -4,7 +4,7 @@ import maze_maker as mm
 def key_down(event):
     global key
     key = event.keysym
-
+#jagifehh vpriwwwwwwirirririi
 
 def key_up(event):
     global key
