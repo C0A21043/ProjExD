@@ -19,7 +19,7 @@ def main_proc():
     if key == "Left": mx -= 1
     if key == "Right": mx += 1
     if key =="p": mx,my=1,1
-    if maze_lst[mx][my] == 1: # 移動先が壁だったら
+    if maze_lst[mx][my] == 1: 
         if key == "Up": my += 1
         if key == "Down": my -= 1
         if key == "Left": mx += 1
@@ -36,7 +36,6 @@ if __name__ == "__main__":
     canvas.pack()
 
     maze_lst = mm.make_maze(15, 9)
-    # print(maze_lst)
     mm.show_maze(canvas, maze_lst)
 
     mx, my = 1, 1
