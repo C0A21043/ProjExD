@@ -11,17 +11,19 @@ def key_up(event):
     key = ""
 
 
+
 def main_proc():
     global cx, cy, mx, my
     if key == "Up": my -= 1
     if key == "Down": my += 1
     if key == "Left": mx -= 1
     if key == "Right": mx += 1
+    if key =="p": mx,my=1,1
     if maze_lst[mx][my] == 1: # 移動先が壁だったら
         if key == "Up": my += 1
         if key == "Down": my -= 1
         if key == "Left": mx += 1
-        if key == "Right": mx -= 1        
+        if key == "Right": mx -= 1
     cx, cy = mx*100+50, my*100+50
     canvas.coords("kokaton", cx, cy)
     root.after(100, main_proc)
