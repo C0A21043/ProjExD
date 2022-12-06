@@ -18,15 +18,15 @@ def main_proc():
     if key == "Down": my += 1
     if key == "Left": mx -= 1
     if key == "Right": mx += 1
-    if key =="p": mx+=4
-    if key =="i": my+=3
+    if key =="p": mx,my=1,1
+    if key =="i": mx,my=1,2
     if maze_lst[mx][my] == 1: 
         if key == "Up": my += 1
         if key == "Down": my -= 1
         if key == "Left": mx += 1
         if key == "Right": mx -= 1
-        if key =="p": mx+=4
-    if key =="i": my+=3
+        if key =="p": mx,my=1,1
+        if key =="i": mx,my=1,2
     cx, cy = mx*100+50, my*100+50
     canvas.coords("kokaton", cx, cy)
     root.after(100, main_proc)
