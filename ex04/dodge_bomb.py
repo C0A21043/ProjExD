@@ -31,12 +31,6 @@ def check_bound2(obj_rct, scr_rct):
         tate2 = -1
     return yoko2, tate2
 
-def draw_text(screen,x,y,text,size,col):#文字表示の関数
-    font=pg.font.Font(None,size)
-    s = font.render(text,True,col)
-    x = x - s.get_width()/2
-    y = y - s.get_height()/2
-    return s,x,y
 
     
 
