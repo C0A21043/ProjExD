@@ -18,11 +18,24 @@ def main():
     
     while True:
         scrn_sfc.blit(soto_sfc,soto_rct)#blit(soto)
+        scrn_sfc.blit(tori_sfc,tori_rct)
+        key_lst=pg.key.get_pressed()
+        
+        if key_lst[pg.K_UP]==True:
+            tori_rct.centery-=1
+        elif key_lst[pg.K_DOWN]==True:
+            tori_rct.centery+=1
+        elif key_lst[pg.K_LEFT]==True:
+            tori_rct.centerx-=1
+        elif key_lst[pg.K_RIGHT]==True:
+            tori_rct.centerx+=1
+        
         for event in pg.event.get():
             if event.type==pg.QUIT:
                 return
-            pg.display.update()
-            clock.tick(1000)
+       
+        pg.display.update()
+        clock.tick(1000)
     
     
 
