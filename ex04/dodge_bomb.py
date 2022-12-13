@@ -108,6 +108,7 @@ def  main():
 
         # 練習８
         if tori_rct.colliderect(bomb_rct):
+            #ゲームオーバーと画面に表示
             font=pg.font.Font(None,100)
             s = font.render("GAMEOVER",True,(0, 0, 255))
             x = scrn_rct.width/2
@@ -116,6 +117,7 @@ def  main():
             pg.display.update()
             return
         if tori_rct.colliderect(bomb2_rct):
+            #ゲームオーバーと画面に表示
             font2=pg.font.Font(None,100)
             s2 = font2.render("GAMEOVER",True,(0, 0, 0))
             x2 = scrn_rct.width/2
