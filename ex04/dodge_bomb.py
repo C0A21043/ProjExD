@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 import random
 
+
 def main():
     clock=pg.time.Clock()
     
@@ -12,6 +13,8 @@ def main():
     scrn_rct=scrn_sfc.get_rect()
     soto_sfc=pg.image.load("fig/pg_bg.jpg")
     soto_rct=soto_sfc.get_rect()
+    
+    
     tori_sfc=pg.image.load("fig/3.png") #Surface(tori)
     tori_sfc=pg.transform.rotozoom(tori_sfc,0,2.0)
     tori_rct=tori_sfc.get_rect()
@@ -47,9 +50,15 @@ def main():
             tori_rct.centerx+=1
       
         scrn_sfc.blit(tori_sfc,tori_rct)
+    
+
+        
+        vx,vy=+1,+1
+        bomb_rct.move_ip(vx,vy)
         scrn_sfc.blit(bomb_sfc,bomb_rct)
         pg.display.update()
         clock.tick(1000)
+        
     
     
 
