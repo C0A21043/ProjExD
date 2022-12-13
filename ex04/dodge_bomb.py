@@ -1,5 +1,6 @@
 import pygame as pg 
 import sys
+import random
 
 def main():
     clock=pg.time.Clock()
@@ -8,17 +9,32 @@ def main():
     
     pg.display.set_caption("逃げろ!こうかとん")
     scrn_sfc=pg.display.set_mode((1600,900)) #Surface(scrn)
+    scrn_rct=scrn_sfc.get_rect()
     soto_sfc=pg.image.load("fig/pg_bg.jpg")
     soto_rct=soto_sfc.get_rect()
     tori_sfc=pg.image.load("fig/3.png") #Surface(tori)
     tori_sfc=pg.transform.rotozoom(tori_sfc,0,2.0)
     tori_rct=tori_sfc.get_rect()
     tori_rct.center=900,400
-    tori_sfc.blit(tori_sfc,tori_rct)#blit(tori)
+    scrn_sfc.blit(tori_sfc,tori_rct)#blit
+    
+    bomb_sfc=pg.Surface((20,20))
+    bomb_sfc.set_colorkey((0,0,0))
+    pg.draw.circle(bomb_sfc,(255,0,0),(10,10),10)
+    bomb_rct=bomb_sfc.get_rect()
+    bomb_rct.centerx=random.randint(0,scrn_rct.width)
+    bomb_rct.centery=random.randint(0,scrn_rct.height)
+    scrn_sfc.blit(bomb_sfc,bomb_rct)
+    
+    
     
     while True:
-        scrn_sfc.blit(soto_sfc,soto_rct)#blit(soto)
-        scrn_sfc.blit(tori_sfc,tori_rct)
+        scrn_sfc.blit(soto_sfc,soto_rct)
+          
+        for event in pg.event.get():
+            if event.type==pg.QUIT:
+                return
+            
         key_lst=pg.key.get_pressed()
         
         if key_lst[pg.K_UP]==True:
@@ -29,11 +45,9 @@ def main():
             tori_rct.centerx-=1
         elif key_lst[pg.K_RIGHT]==True:
             tori_rct.centerx+=1
-        
-        for event in pg.event.get():
-            if event.type==pg.QUIT:
-                return
-       
+      
+        scrn_sfc.blit(tori_sfc,tori_rct)
+        scrn_sfc.blit(bomb_sfc,bomb_rct)
         pg.display.update()
         clock.tick(1000)
     
@@ -45,4 +59,3 @@ if __name__== "__main__":
     pg.init()
     pg.quit()
     sys.exit
-
