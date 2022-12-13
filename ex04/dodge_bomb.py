@@ -4,13 +4,15 @@ import sys
 
 
 def check_bound(obj_rct, scr_rct):
-    # 第1引数：こうかとんrectまたは爆弾rect
+    # 第1引数：こうかとんrectまたは爆弾1rect
     # 第2引数：スクリーンrect
     # 範囲内：+1／範囲外：-1
     yoko, tate= +1, +1
 
     if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right:
         yoko= -1
+        
+        
     if obj_rct.top < scr_rct.top or scr_rct.bottom < obj_rct.bottom:
         tate = -1
     return yoko, tate
@@ -18,7 +20,7 @@ def check_bound(obj_rct, scr_rct):
 
 
 def check_bound2(obj_rct, scr_rct):
-    # 第1引数：こうかとんrectまたは爆弾rect
+    # 第1引数：こうかとんrectまたは爆弾2rect
     # 第2引数：スクリーンrect
     # 範囲内：+1／範囲外：-1
     yoko2, tate2= +1, +1
@@ -29,9 +31,17 @@ def check_bound2(obj_rct, scr_rct):
         tate2 = -1
     return yoko2, tate2
 
+def draw_text(screen,x,y,text,size,col):#文字表示の関数
+    font=pg.font.Font(None,size)
+    s = font.render(text,True,col)
+    x = x - s.get_width()/2
+    y = y - s.get_height()/2
+    return s,x,y
+
+    
 
 
-def main():
+def  main():
     clock =pg.time.Clock()
     # 練習１
     pg.display.set_caption("逃げろ！こうかとん")
@@ -68,6 +78,8 @@ def main():
     bomb2_rct.centery = random.randint(0, scrn_rct.height)
     scrn_sfc.blit(bomb2_sfc, bomb2_rct)
     vx2,vy2=+1,+1
+    
+    WHITE=(2255,255,0)
     
     
     
@@ -120,12 +132,31 @@ def main():
 
         # 練習８
         if tori_rct.colliderect(bomb_rct):
+            font=pg.font.Font(None,100)
+            s = font.render("GAMEOVER",True,(0, 0, 255))
+            x = scrn_rct.width/2
+            y = scrn_rct.height/2
+            scrn_sfc.blit(s,[x,y])
+            pg.display.update()
+            return
+        if tori_rct.colliderect(bomb2_rct):
+            font2=pg.font.Font(None,100)
+            s2 = font2.render("GAMEOVER",True,(0, 0, 0))
+            x2 = scrn_rct.width/2
+            y2 = scrn_rct.height/2
+            scrn_sfc.blit(s2,[x2,y2])
+            pg.display.update()
             return
         
         
-
+    
         pg.display.update()
         clock.tick(1000)
+        
+        
+        
+        
+        
 
 
 if __name__ == "__main__":
