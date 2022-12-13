@@ -7,12 +7,28 @@ def check_bound(obj_rct, scr_rct):
     # 第1引数：こうかとんrectまたは爆弾rect
     # 第2引数：スクリーンrect
     # 範囲内：+1／範囲外：-1
-    yoko, tate = +1, +1
+    yoko, tate= +1, +1
+
     if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right:
-        yoko = -1
+        yoko= -1
     if obj_rct.top < scr_rct.top or scr_rct.bottom < obj_rct.bottom:
         tate = -1
     return yoko, tate
+
+
+
+def check_bound2(obj_rct, scr_rct):
+    # 第1引数：こうかとんrectまたは爆弾rect
+    # 第2引数：スクリーンrect
+    # 範囲内：+1／範囲外：-1
+    yoko2, tate2= +1, +1
+
+    if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right:
+        yoko2= -1
+    if obj_rct.top < scr_rct.top or scr_rct.bottom < obj_rct.bottom:
+        tate2 = -1
+    return yoko2, tate2
+
 
 
 def main():
@@ -41,6 +57,21 @@ def main():
     bomb_rct.centery = random.randint(0, scrn_rct.height)
     scrn_sfc.blit(bomb_sfc, bomb_rct) 
     vx, vy = +1, +1
+    
+    
+    
+    bomb2_sfc = pg.Surface((20, 20)) # 正方形の空のSurface
+    bomb2_sfc.set_colorkey((0, 0, 0))
+    pg.draw.circle(bomb2_sfc, (0,0,255), (10, 10), 10)
+    bomb2_rct = bomb2_sfc.get_rect()
+    bomb2_rct.centerx = random.randint(0, scrn_rct.width)
+    bomb2_rct.centery = random.randint(0, scrn_rct.height)
+    scrn_sfc.blit(bomb2_sfc, bomb2_rct)
+    vx2,vy2=+1,+1
+    
+    
+    
+    
 
     # 練習２
     while True:
@@ -78,10 +109,20 @@ def main():
         yoko, tate = check_bound(bomb_rct, scrn_rct)
         vx *= yoko
         vy *= tate
+        
+        bomb2_rct.move_ip(vx2, vy2)
+        scrn_sfc.blit(bomb2_sfc,bomb2_rct)
+        yoko2, tate2 = check_bound2(bomb2_rct, scrn_rct)
+        vx2 *= yoko2
+        vy2 *= tate2
+        
+        
 
         # 練習８
         if tori_rct.colliderect(bomb_rct):
             return
+        
+        
 
         pg.display.update()
         clock.tick(1000)
