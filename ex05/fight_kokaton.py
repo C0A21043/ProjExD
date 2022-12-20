@@ -1,7 +1,20 @@
 import pygame as pg
 import random
 import sys
+import os
 
+main_dir = os.path.split(os.path.abspath(__file__))[0]
+
+def load_sound(file):
+    if not pg.mixer:
+        return None
+    file = os.path.join(main_dir, "data", file)
+    try:
+        sound = pg.mixer.Sound(file)
+        return sound
+    except pg.error:
+        print("Warning, unable to load, %s" % file)
+    return None
 
 class Screen:
     def __init__(self, title, wh, img_path):
@@ -13,8 +26,7 @@ class Screen:
 
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct) 
-
-
+        
 class Bird:
     key_delta = {
         pg.K_UP:    [0, -1],
@@ -29,8 +41,10 @@ class Bird:
         self.rct = self.sfc.get_rect()
         self.rct.center = xy
 
+
     def blit(self, scr:Screen):
         scr.sfc.blit(self.sfc, self.rct)
+
 
     def update(self, scr:Screen):
         key_dct = pg.key.get_pressed()
@@ -91,21 +105,44 @@ def main():
 
     # 練習５
     bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)
-    bkd.update(scr)
+    bkd_lst=[]
+    colors=["red","green","blue","yellow","magenta","pink"]
+    for i in range(6):
+        color=colors[i]
+        vx=random.choice([-1,+1])
+        vy=random.choice([-1,+1])
+        bkd_lst.append(Bomb(color,10,(vx,vy),scr))
+        
+        
+    main_dir = os.path.split(os.path.abspath(__file__))[0]
+    boom_sound = load_sound("boom.wav")
+    shoot_sound = load_sound("car_door.wav")
+    if pg.mixer:
+        music = os.path.join(main_dir, "data", "house_lo.wav")
+        pg.mixer.music.load(music)
+        pg.mixer.music.play(-1)
+    
 
     # 練習２
     while True:        
         scr.blit()
-
+        
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
 
         kkt.update(scr)
-        bkd.update(scr)
-        if kkt.rct.colliderect(bkd.rct):
-            return
-
+        for bomb in bkd_lst:
+            bomb.update(scr)
+            if kkt.rct.colliderect(bomb.rct):
+                font=pg.font.Font(None,100)
+                s = font.render("GAMEOVER",True,(0, 0, 255))
+                x = scr.rct.width/2
+                y = scr.rct.height/2
+                scr.sfc.blit(s,[x,y])
+                pg.display.update()
+                return
+            
         pg.display.update()
         clock.tick(1000)
 
