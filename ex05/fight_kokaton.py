@@ -113,7 +113,14 @@ def main():
         for bomb in bkd_lst:
             bomb.update(scr)
             if kkt.rct.colliderect(bomb.rct):
+                font=pg.font.Font(None,100)
+                s = font.render("GAMEOVER",True,(0, 0, 255))
+                x = scr.rct.width/2
+                y = scr.rct.height/2
+                scr.sfc.blit(s,[x,y])
+                pg.display.update()
                 return
+                
 
         pg.display.update()
         clock.tick(1000)
