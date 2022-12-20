@@ -1,6 +1,23 @@
 import pygame as pg
 import random
 import sys
+import os
+
+
+
+
+main_dir = os.path.split(os.path.abspath(__file__))[0]
+def load_sound(file):
+    
+    if not pg.mixer:
+        return None
+    file = os.path.join(main_dir, "data", file)
+    try:
+        sound = pg.mixer.Sound(file)
+        return sound
+    except pg.error:
+        print("Warning, unable to load, %s" % file)
+    return None
 
 
 class Screen:
@@ -98,6 +115,16 @@ def main():
         vx=random.choice([-1,+1])
         vy=random.choice([-1,+1])
         bkd_lst.append(Bomb(color,10,(vx,vy),scr))
+        
+        
+        
+    main_dir = os.path.split(os.path.abspath(__file__))[0]
+    boom_sound = load_sound("boom.wav")
+    shoot_sound = load_sound("car_door.wav")
+    if pg.mixer:
+        music = os.path.join(main_dir, "data", "house_lo.wav")
+        pg.mixer.music.load(music)
+        pg.mixer.music.play(-1)
     
 
     # 練習２
