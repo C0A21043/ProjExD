@@ -5,7 +5,7 @@ import os
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
-def load_sound(file):
+def load_sound(file):#BMGを流す
     if not pg.mixer:
         return None
     file = os.path.join(main_dir, "data", file)
