@@ -91,20 +91,29 @@ def main():
 
     # 練習５
     bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)
-    bkd.update(scr)
+    bkd_lst=[]
+    colors=["red","green","blue","yellow","magenta","pink"]
+    for i in range(6):
+        color=colors[i]
+        vx=random.choice([-1,+1])
+        vy=random.choice([-1,+1])
+        bkd_lst.append(Bomb(color,10,(vx,vy),scr))
+    
 
     # 練習２
     while True:        
         scr.blit()
+        
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
 
         kkt.update(scr)
-        bkd.update(scr)
-        if kkt.rct.colliderect(bkd.rct):
-            return
+        for bomb in bkd_lst:
+            bomb.update(scr)
+            if kkt.rct.colliderect(bomb.rct):
+                return
 
         pg.display.update()
         clock.tick(1000)
