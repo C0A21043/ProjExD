@@ -3,12 +3,9 @@ import random
 import sys
 import os
 
-
-
-
 main_dir = os.path.split(os.path.abspath(__file__))[0]
+
 def load_sound(file):
-    
     if not pg.mixer:
         return None
     file = os.path.join(main_dir, "data", file)
@@ -18,7 +15,6 @@ def load_sound(file):
     except pg.error:
         print("Warning, unable to load, %s" % file)
     return None
-
 
 class Screen:
     def __init__(self, title, wh, img_path):
@@ -30,8 +26,7 @@ class Screen:
 
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct) 
-
-
+        
 class Bird:
     key_delta = {
         pg.K_UP:    [0, -1],
@@ -46,8 +41,10 @@ class Bird:
         self.rct = self.sfc.get_rect()
         self.rct.center = xy
 
+
     def blit(self, scr:Screen):
         scr.sfc.blit(self.sfc, self.rct)
+
 
     def update(self, scr:Screen):
         key_dct = pg.key.get_pressed()
@@ -117,7 +114,6 @@ def main():
         bkd_lst.append(Bomb(color,10,(vx,vy),scr))
         
         
-        
     main_dir = os.path.split(os.path.abspath(__file__))[0]
     boom_sound = load_sound("boom.wav")
     shoot_sound = load_sound("car_door.wav")
@@ -131,7 +127,6 @@ def main():
     while True:        
         scr.blit()
         
-
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
@@ -147,8 +142,7 @@ def main():
                 scr.sfc.blit(s,[x,y])
                 pg.display.update()
                 return
-                
-
+            
         pg.display.update()
         clock.tick(1000)
 
